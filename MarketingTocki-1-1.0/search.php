@@ -14,10 +14,6 @@ if (   $tocki_redux_themeoptions['tocki_redux_mobile_switcher'] == 1
 } else { 
     get_header(); ?>
 
-    <aside class="sidebar sidebar-desktop">
-        <?php get_sidebar(); ?>
-    </aside> <!-- /sidebar -->
-
     <section class="content">
         <?php if ( have_posts() ) : ?>
 			<header class="page-header">
@@ -48,8 +44,8 @@ if (   $tocki_redux_themeoptions['tocki_redux_mobile_switcher'] == 1
 		<?php endif; ?>
     </section> <!-- /content -->
 
-    <aside class="sidebar sidebar-mobile">
-        <?php include( TEMPLATEPATH . '/sidebar.php'); ?>
+    <aside class="sidebar sidebar-desktop">
+        <?php get_sidebar(); ?>
     </aside> <!-- /sidebar -->
 
     <?php get_footer();

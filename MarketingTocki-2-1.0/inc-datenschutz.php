@@ -10,7 +10,7 @@
 	Ihres Internet Service Providers, die Seite, von der aus Sie uns besuchen 
 	oder den Namen der angeforderten Datei. Diese Daten werden ausschließlich 
 	zur Verbesserung unseres Angebotes ausgewertet und erlauben keinen 
-Rückschluss auf Ihre Person.
+	Rückschluss auf Ihre Person.
 </p>
 
 <h3>Erhebung und Verarbeitung personenbezogener Daten</h3>

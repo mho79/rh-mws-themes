@@ -650,8 +650,8 @@ width: 100%; }
 
 .site-title {
 background-image: url("/wp-content/themes/MarketingTocki-4-1.0/img/logo.png");
-background-size: auto auto;
-background-position: 0 center;
+background-size: 410px 600px;
+background-position: 0 0;
 width: 300px;
 -webkit-transition: all 0.5s ease;
 transition: all 0.5s ease;
@@ -997,9 +997,12 @@ RESPONSIVE
 \*------------------------------------*/
 
 @media only screen and (max-width: 1023px) {
-.content, .sidebar-primary, .site-header aside, .title-area {
-width: 100%;
-overflow: visible;
+.content, .sidebar-primary, .site-header aside, .title-area, .sidebar {
+width: 100% !important;
+float: none !important;
+}
+.content {
+	padding-right:0 !important;
 }
 .site-header {
 padding: 0;
@@ -1450,25 +1453,33 @@ display: block;
 opacity: .8;
 }
 main.sidebar-content {
-padding-right: 325px;
-padding-bottom: 25px;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    overflow:hidden;
+	padding-bottom: 25px;
+	padding-right: 20px;
+	width: 73.6842105%;
 }
 aside.sidebar {
-float: right;
-width: 300px;
-padding: 25px;
-min-height: 600px;
-background: #fff;
-overflow: hidden;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	float: right;
+	width: 26.3157895%;
+	padding: 25px;
+	min-height: 600px;
+	background: #fff;
+	overflow: hidden;
 }
-aside.mobile-sidebar {
-float: none;
-width: 100%;
-padding: 6px 25px 30px 25px;
-margin: 0 0 30px 0;
-min-height: 600px;
-background: #fff;
-overflow: hidden;
+.kontaktformular * {
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.kontaktformular label {
+	display:block;
 }
 .sidebar form.kontaktformular input, .sidebar form.kontaktformular textarea, .sidebar form.kontaktformular select {
 width: 245px;
@@ -1478,11 +1489,9 @@ color: #666666;
 }
 .sidebar form.kontaktformular input, .sidebar form.kontaktformular textarea, .sidebar form.kontaktformular select {
 border: 1px solid #6bb1e1;
+width:100%;
 }
 .sidebar form.kontaktformular label {
-float: left;
-width: 70px;
-clear: both;
 padding-top: 4px;
 }
 .sidebar table, .sidebar td, .sidebar tbody {

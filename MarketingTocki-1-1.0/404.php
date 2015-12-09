@@ -1,9 +1,5 @@
 <?php get_header(); ?>
 
-<aside class="sidebar sidebar-desktop">
-    <?php get_sidebar(); ?>
-</aside> <!-- /sidebar -->
-
 <section class="content">
     <div>
         <h1>Seite nicht gefunden (404)</h1>
@@ -11,8 +7,8 @@
     </div>
 </section> <!-- /content -->
 
-<aside class="sidebar sidebar-mobile">
-    <?php include( TEMPLATEPATH . '/sidebar.php'); ?>
+<aside class="sidebar sidebar-desktop">
+    <?php get_sidebar(); ?>
 </aside> <!-- /sidebar -->
 
 <?php get_footer(); ?>

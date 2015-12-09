@@ -236,7 +236,7 @@ if ( !empty($tocki_redux_themeoptions["tocki_redux_footer"]) ) {
 } else {
     if (is_user_logged_in()): ?>
         <!-- Eingeloggte User erhalten kein Google Analytics Code  -->
-        <!-- Bugherd  -->
+        <!-- Bugherd 
         <script>
             (function (d, t) {
                 var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -244,7 +244,7 @@ if ( !empty($tocki_redux_themeoptions["tocki_redux_footer"]) ) {
                 bh.src = '//www.bugherd.com/sidebarv2.js?apikey=mng5yi483ff6nwtbayoasq';
                 s.parentNode.insertBefore(bh, s);
             })(document, 'script');
-        </script>
+        </script> -->
     <?php else: ?>
         <script>
             var gaProperty = 'UA-63619645-1';

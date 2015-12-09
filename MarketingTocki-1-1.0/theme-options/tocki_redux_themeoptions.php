@@ -18,7 +18,7 @@ if (!class_exists("Redux_Framework_sample_config")) {
             if ( defined('TEMPLATEPATH') && strpos(__FILE__,TEMPLATEPATH) !== false) {
                 $this->initSettings();
             } else {
-                add_action('plugins_loaded', array($this, 'initSettings'), 10);    
+                add_action('after_setup_theme', array($this, 'initSettings'), 10);    
             }
         }
 

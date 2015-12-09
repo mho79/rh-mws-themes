@@ -161,6 +161,10 @@ global $tocki_redux_themeoptions; // globale Variable für die Theme Options. ?>
 
         <?php wp_footer(); ?>
 
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/js/jquery.fadeSliderToggle.js"></script> <!-- Fade Slide Toggle Plugin  -->   
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/js/parsley.js"></script><!-- Form Validation --> 
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/js/de.js"></script>
+
         <!-- individuelles Scripts der Seite  -->
         <script>
             var $ = jQuery,
@@ -175,10 +179,36 @@ global $tocki_redux_themeoptions; // globale Variable für die Theme Options. ?>
                 js = d.createElement(s); 
                 js.id = id;
                 js.async = 'async';
-                js.src = '<?php bloginfo("stylesheet_directory"); ?>/js/rh-mws.js';
+                js.src = '<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/js/rh-mws.js';
                 mws.parentNode.insertBefore(js, mws);
             }(document, 'script', 'rh-mws'));
         </script>
+
+        <?php if (!is_user_logged_in()) { ?>
+            <script>
+                var gaProperty = 'UA-63619645-1',
+                    disableStr = 'ga-disable-' + gaProperty;
+                    
+                if (document.cookie.indexOf(disableStr + '=true') > -1) {
+                    window[disableStr] = true;
+                }
+
+                function gaOptout() {
+                    document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                    window[disableStr] = true;
+                    alert("OptOut war erfolgreich!");
+                }
+
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', gaProperty, 'auto');
+                ga('set', 'anonymizeIp', true);
+                ga('send', 'pageview');
+            </script>
+        <?php } ?>
 
         <?php 
         if ( !empty($tocki_redux_themeoptions["tocki_redux_footer"]) ) {

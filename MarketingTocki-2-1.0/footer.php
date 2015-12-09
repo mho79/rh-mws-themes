@@ -166,9 +166,9 @@ global $tocki_redux_themeoptions; // globale Variable für die Theme Options. ?>
         <?php wp_footer(); ?>
 
         <!-- JavaScript im Footer -->
-        <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/jquery.fadeSliderToggle.js"></script> <!-- Fade Slide Toggle Plugin  -->
-        <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/messages.de.js"></script><!-- Form Validation -->   
-        <script src="<?php bloginfo( 'stylesheet_directory' ); ?>/js/parsley.js"></script><!-- Form Validation -->   
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/js/jquery.fadeSliderToggle.js"></script> <!-- Fade Slide Toggle Plugin  -->   
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/js/parsley.js"></script><!-- Form Validation --> 
+        <script src="<?php echo esc_url( get_stylesheet_directory_uri() ) ?>/js/de.js"></script>
 
         <!-- individuelles Scripts der Seite  -->
         <script>
@@ -184,7 +184,7 @@ global $tocki_redux_themeoptions; // globale Variable für die Theme Options. ?>
                 js = d.createElement(s); 
                 js.id = id;
                 js.async = 'async';
-                js.src = '<?php bloginfo("stylesheet_directory"); ?>/js/rh-mws.js';
+                js.src = '<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/js/rh-mws.js';
                 mws.parentNode.insertBefore(js, mws);
             }(document, 'script', 'rh-mws'));
         </script>

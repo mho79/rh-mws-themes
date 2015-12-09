@@ -212,13 +212,16 @@ h1 {
 /* SIDEBAR */
 
 .sidebar {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+  	box-sizing: border-box;
 	float: right;
 	font-size: 13px;
 	line-height: 18px;
-	overflow: hidden;
-	width: 280px;
+	width: 33.33333%;
 	min-height: 350px;
-	padding: 25px 0 10px 20px;
+	margin: 0;
+	padding: 10px 20px;
 	background: #fff;
 	border-left: 1px solid #efefef;
 }
@@ -227,15 +230,11 @@ h1 {
 	margin-bottom: 15px;
 }
 
-.sidebar-mobile {
-	display: none;
+.sidebar-box {
+	width: 100%;
+	margin: 35px 0 0 0;
+	padding: 35px 0 0 0;
 }
-
-	.sidebar-box {
-		width: 250px;
-		margin: 35px 0 0 0;
-		padding: 35px 0 0 0;
-	}
 		.sidebar-box:first-child,
 		.sidebar .corporate-top-border:first-child{
 			margin: 0;
@@ -270,6 +269,12 @@ h1 {
 				background: #CC0000;
 				border: 2px solid #FF0000;
 				}
+
+		.kontaktformular * {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
 		  
 		form.kontaktformular  label {
 			float: left;
@@ -357,11 +362,16 @@ h1 {
 
 /* CONTENT */
 .content {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	overflow: hidden;
 	max-width: 620px;
-	margin: 0 0 0 20px;
-	padding: 0 20px 0 0;
+	margin: 0;
+	padding: 0 20px;
 	display: block;
+	float: left;
+	width: 66.66666%;
 }
 
 .content p{
@@ -745,53 +755,32 @@ li#theme-switcher { background:#333; border:10px solid red; padding:20px; positi
 				}
 			
 	/* -------------------- ENDE MENU -------------------------------- */
-    
- 
-	.sidebar-mobile {
-		display: block;
-		float: left;
+    .content {
+    	float:none;
+    	max-width: 100%;
+    	width:100%;
+    }
+	.sidebar {
+		float: none;
+		margin: 0;
+		padding: 25px 0 0 0;
 		width: 100%;
-		padding: 0;
-		border-left: none;
 	}
-			
-		.sidebar-mobile .sidebar-box {
-			width: 90%;
-			margin: 0;
-			padding: 35px 5%;
-		}
-		
-			.sidebar-mobile .sidebar-box:first-child, 
-			.sidebar-mobile .sidebar .corporate-top-border:first-child {
-				width: 90%;
-				margin: 0;
-				padding: 35px 5%;
-				}	
-		
-		.sidebar-mobile .sidebar-box input,
-		.sidebar-mobile form.kontaktformular input, 
-		.sidebar-mobile form.kontaktformular textarea, 
-		.sidebar-mobile form.kontaktformular select {
-		}
-		
-			.sidebar-mobile form.kontaktformular input[type=submit] { 		
+
+			.sidebar form.kontaktformular input[type=submit] { 		
 				width: 100%; 
 				-webkit-appearance: none;
-				}
+			}
 
 		
-		.sidebar-mobile img{
+		.sidebar img{
 			width: 100%;
 		}
 		
-		.sidebar-mobile .widget_black_studio_tinymce .textwidget ul li {
+		.sidebar .widget_black_studio_tinymce .textwidget ul li {
 			float: left;
 			width: 40%;
 		}
-	
-	.sidebar-desktop{
-		display: none;
-	}
 		
 	.footer-widgets {
 		padding: 25px 2%;

@@ -24,7 +24,7 @@
 
 		<link rel="shortcut icon" href="<?php if (!empty($tocki_redux_themeoptions["tocki_redux_favicon"])) { ?><?php echo $tocki_redux_themeoptions["tocki_redux_favicon"]; } ?>">
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>"> <!-- allgemeines CSS -->
-		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/font-awesome-4.4.0/css/font-awesome.min.css"> <!-- font awesome 4.1.0 -->
+		<link rel="stylesheet" media="all" href="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/css/font-awesome-4.4.0/css/font-awesome.min.css"> <!-- font awesome 4.1.0 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<?php if ($tocki_redux_themeoptions['tocki_redux_mobile_iphone_numbers_klickable'] == 1) { ?>
 			<!-- Telefon-Nr. auf iOS werden als Links anzeigen -->
@@ -300,16 +300,18 @@
 					}
 				<?php }
 
-				if (!empty($tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"])) { ?>
-					.content-phonebox {
-						border-style: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"]["border-style"]; ?>; 
-						border-color: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"]["border-color"]; ?>;
-						border-top-width: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"]["border-top"]; ?>;
-						border-right-width: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"]["border-right"]; ?>;
-						border-bottom-width: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"]["border-bottom"]; ?>;
-						border-left-width: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"]["border-left"]; ?>;
+				if (!empty($tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"])) { 
+					$borders = $tocki_redux_themeoptions["tocki_redux_colorextend_cta_borders"];
+					?>
+					.content-phonebox{
+						border-style: <?php echo (!empty($borders['border-style']) ? $borders['border-style'] : 'none'); ?>; 
+						border-color: <?php echo (!empty($borders['border-color']) ? $borders['border-color'] : 'transparent'); ?>;
+						border-top-width: <?php echo (!empty($borders['border-top']) ? $borders['border-top'] : '0'); ?>;
+						border-right-width: <?php echo (!empty($borders['border-right']) ? $borders['border-right'] : '0'); ?>;
+						border-bottom-width: <?php echo (!empty($borders['border-bottom']) ? $borders['border-bottom'] : '0'); ?>;
+						border-left-width: <?php echo (!empty($borders['border-left']) ? $borders['border-left'] : '0'); ?>
 					}
-				<?php }
+			<?php }
 			}
 
 			if ($tocki_redux_themeoptions['tocki_redux_content_padding_switch'] == 1) { ?>

@@ -64,10 +64,8 @@ if ( ! function_exists( 'twentyten_setup' ) ):
 	 *
 	 * @uses add_theme_support() To add support for post thumbnails and automatic feed links.
 	 * @uses register_nav_menus() To add support for navigation menus.
-	 * @uses add_custom_background() To add support for a custom background.
 	 * @uses add_editor_style() To style the visual editor.
 	 * @uses load_theme_textdomain() For translation/localization support.
-	 * @uses add_custom_image_header() To add support for a custom header.
 	 * @uses register_default_headers() To register the default custom header images provided with the theme.
 	 * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
 	 *
@@ -100,7 +98,9 @@ if ( ! function_exists( 'twentyten_setup' ) ):
 		) );
 
 		// This theme allows users to set a custom background
-		add_custom_background( 'devpress_custom_background_callback' );
+		add_theme_support( 'custom-background', array(
+			'wp-head-callback' => 'devpress_custom_background_callback'
+		) );
 		
 		function devpress_custom_background_callback() {
 			/* Get the background image. */
@@ -145,7 +145,9 @@ if ( ! function_exists( 'twentyten_setup' ) ):
 
 		// Add a way for the custom header to be styled in the admin panel that controls
 		// custom headers. See twentyten_admin_header_style(), below.
-		add_custom_image_header( '', 'twentyten_admin_header_style' );
+		add_theme_support( 'custom-header', array(
+			'admin-head-callback' =>  'twentyten_admin_header_style'
+		) );
 
 		// ... and thus ends the changeable header business.
 
@@ -539,14 +541,6 @@ function custom_admin_footer() {
 }
 add_filter('admin_footer_text', 'custom_admin_footer');
 
-// Proper way to enqueue scripts and styles
-function theme_name_scripts() {
-	wp_enqueue_script( 'Fade Slide Toggle Plugin', get_template_directory_uri() . '/js/jquery.fadeSliderToggle.js', array('jquery'), '', true );
-	wp_enqueue_script( 'Form Validation - Sprachpaket', get_template_directory_uri() . '/js/messages.de.js', array(), '', true );
-	wp_enqueue_script( 'Form Validation', get_template_directory_uri() . '/js/parsley.js', array(), '', true );
-}
-add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
-
 
 // Subseite "Anpassen ausblenden"
 function adjust_the_wp_menu() {
@@ -581,3 +575,251 @@ add_shortcode('ProxyNumber', 'ProxyNumberShortcode');
 
 // Shortcode auch in Widgets aktivieren
 add_filter('widget_text', 'do_shortcode');
+
+/**
+ * create widget from visual composer plugin
+ * @param  array  $conf   widget configuration
+ * @return string $output widget html
+ */
+function createWidget($conf) {
+    global $wp_widget_factory;
+
+    if(empty($conf['widget_name'])) {
+    	return;
+    }
+
+    $widget_name = $conf['widget_name'];
+
+    if (!is_a($wp_widget_factory->widgets[$widget_name], 'WP_Widget')):
+        $wp_class = 'WP_Widget_' . ucwords(strtolower($class));
+        
+        if (!is_a($wp_widget_factory->widgets[$wp_class], 'WP_Widget')):
+            return;
+        else:
+            $class = $wp_class;
+        endif;
+    endif;
+    
+    ob_start();
+    the_widget(
+    	$widget_name, 
+    	$conf, 
+    	array(
+    		'widget_id' => 'vc-widget-instance-' . uniqid(),
+	        'before_widget' => '<div class="' . $widget_name . '">',
+	        'after_widget' => '</div>',
+	        'before_title' => '<h2>',
+	        'after_title' => '</h2>'
+	    )
+	);
+
+    $output = ob_get_contents();
+    ob_end_clean();
+
+    return $output;
+}
+
+/**
+ * shortcode visual composer integration for contact widget
+ * @param  array $atts
+ * @return string widget html
+ */
+function form_widget($atts) {
+	$atts['widget_name'] = 'mod_form_widget';
+
+	return createWidget($atts);
+}
+add_shortcode('form_widget', 'form_widget'); 
+
+/**
+ * integrate mod form widget in visual composer
+ */
+function mod_form_integrateWithVC() {
+   	vc_map(array(
+      	"name" => "ModForm Kontaktformular",
+      	"base" => "form_widget",
+      	"class" => "",
+      	"category" => __( 'Content', 'js_composer' ),
+      	"description" => "Fügt ein Kontaktformular Widget in den Contentbereich ein",
+      	"icon" => "vc_general vc_element-icon icon-wpb-atm",
+      	"params" => array(
+         	array(
+            	"type" => "textfield",
+            	"holder" => "div",
+            	"class" => "",
+            	"heading" => __( "Titel", "vc-extend" ),
+            	"param_name" => "mod_form_title",
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Name", "vc-extend" ),
+	            "param_name" => "mod_form_name",
+	        ),
+	        array(
+	            "type" => "dropdown",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Name als Pflichtfeld", "vc-extend" ),
+	            "param_name" => "mod_form_name_req",
+	            "value" => array("","Ja")
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "E-Mail", "vc-extend" ),
+	            "param_name" => "mod_form_mail",
+	        ),
+	        array(
+	            "type" => "dropdown",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "E-Mail als Pflichtfeld", "vc-extend" ),
+	            "param_name" => "mod_form_mail_req",
+	            "value" => array("","Ja")
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Telefon", "vc-extend" ),
+	            "param_name" => "mod_form_fon",
+	        ),
+	        array(
+	            "type" => "dropdown",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Telefon als Pflichtfeld", "vc-extend" ),
+	            "param_name" => "mod_form_fon_req",
+	            "value" => array("","Ja")
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Nachricht", "vc-extend" ),
+	            "param_name" => "mod_form_message",
+	        ),
+	        array(
+	            "type" => "dropdown",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Nachricht als Pflichtfeld", "vc-extend" ),
+	            "param_name" => "mod_form_message_req",
+	            "value" => array("","Ja")
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Button Text", "vc-extend" ),
+	            "param_name" => "mod_form_cta",
+	        ),
+      	)
+   ));
+}
+add_action('vc_before_init', 'mod_form_integrateWithVC');
+
+/**
+ * shortcode visual composer integration for maps widget
+ * @param  array $atts
+ * @return string widget html
+ */
+function map_widget($atts) {
+	$atts['widget_name'] = 'widget_tocki_sidebar_map';
+
+	if(!empty($atts['tocki-sidebar-map-marker'])) {
+		$id = $atts['tocki-sidebar-map-marker'];
+		$atts['tocki-sidebar-map-marker'] = wp_get_attachment_url($id);
+	}
+
+	return createWidget($atts);
+}
+add_shortcode('map_widget', 'map_widget'); 
+
+/**
+ * integrate mod form widget in visual composer
+ */
+function maps_integrateWithVC() {
+   	vc_map(array(
+      	"name" => "Google Map",
+      	"base" => "map_widget",
+      	"class" => "",
+      	"category" => __( 'Content', 'js_composer' ),
+      	"description" => "Fügt eine Google Ma im Content ein",
+      	"icon" => "vc_general vc_element-icon icon-wpb-map-pin",
+      	"params" => array(
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Überschrift", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-title",
+	            "value" => "Hier finden Sie uns"
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Firma", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-firma",
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Strasse", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-strasse",
+	            "value" => "{customer.street}"
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "PLZ", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-plz",
+	            "value" => "{customer.zipcode}"
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Ort", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-ort",
+	            "value" => "{customer.city}"
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Koordinaten (lat lng Kommagetrennt)", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-coord",
+	        ),
+	        array(
+	            "type" => "colorpicker",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Farbe", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-color",
+	        ),
+	        array(
+	            "type" => "attach_image",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Marker-Icon", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-marker",
+	        ),
+	        array(
+	            "type" => "textfield",
+	            "holder" => "div",
+	            "class" => "",
+	            "heading" => __( "Zoom", "vc-extend" ),
+	            "param_name" => "tocki-sidebar-map-zoom",
+	            "value" => 11
+	        ),
+      	)
+   ));
+}
+add_action('vc_before_init', 'maps_integrateWithVC');

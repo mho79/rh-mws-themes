@@ -15,11 +15,6 @@
  
 <!-- Main Wrapper -->
 <div class="wrapper sidebar-content-wrapper">
-	<!-- Sidebar -->
-	<aside class="sidebar">
-		<?php dynamic_sidebar( 'sidebar-widget-area' ); ?>
-	</aside>
-
 	<main role="main" class="content sidebar-content">
 		<!-- section -->
 		<section>
@@ -57,7 +52,7 @@
 		<!-- /section -->
 	</main>
 
-	<aside class="sidebar mobile-sidebar">
+	<aside class="sidebar">
 		<?php dynamic_sidebar( 'sidebar-widget-area' ); ?>
 	</aside>
 </div>

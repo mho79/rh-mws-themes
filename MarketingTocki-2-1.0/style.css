@@ -6,6 +6,8 @@ Version: 1.0
 Author: Tilman Ockert
 Author URI: http://tocki.de
 Tags: tocki, clean, reduced
+License:
+License URI:
 
  _|_|_|_|_|    _|_|      _|_|_|  _|    _|  _|_|_|  
      _|      _|    _|  _|        _|  _|      _|    
@@ -37,6 +39,14 @@ strong { font-weight:bold }
 em { font-style:italic }
 a img { border:none } /* Gets rid of IE's blue borders */
 
+.wp-caption-text,
+.sticky,
+.screen-reader-text,
+.gallery-caption,
+.bypostauthor {
+	margin: 0;
+	padding: 0;
+}
 
 /* AWESOME */
 /* ----------------------------------------- */

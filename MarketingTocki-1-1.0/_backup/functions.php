@@ -99,7 +99,9 @@ function twentyten_setup() {
 	) );
 
 	// This theme allows users to set a custom background
-	add_custom_background( 'devpress_custom_background_callback' );
+	add_theme_support( 'custom-background', array(
+		'wp-head-callback' => 'devpress_custom_background_callback'
+	) );
 	
 					function devpress_custom_background_callback() {
 				

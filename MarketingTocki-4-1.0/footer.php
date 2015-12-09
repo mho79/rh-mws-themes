@@ -189,7 +189,6 @@
             ?>
         </nav> 
 
-        <!-- JavaScript im Footer -->
         <!-- individuelles Scripts der Seite  -->
         <script>
             var $ = jQuery,
@@ -204,47 +203,37 @@
                 js = d.createElement(s); 
                 js.id = id;
                 js.async = 'async';
-                js.src = '<?php bloginfo("stylesheet_directory"); ?>/js/rh-mws.js';
+                js.src = '<?php echo esc_url( get_stylesheet_directory_uri() ) ; ?>/js/rh-mws.js';
                 mws.parentNode.insertBefore(js, mws);
             }(document, 'script', 'rh-mws'));
-
-            // parsley //////////////////////////////////////
-            window.ParsleyConfig = window.ParsleyConfig || {};
-            (function ($) {
-              window.ParsleyConfig = $.extend(true, {}, window.ParsleyConfig, {
-                    messages: {
-                        defaultMessage: "Die Eingabe scheint nicht korrekt zu sein.", 
-                        type: {
-                            email:      "Die Eingabe muss eine gültige E-Mail-Adresse sein.",
-                            url:        "Die Eingabe muss eine gültige URL sein.",
-                            urlstrict:  "Die Eingabe muss eine gültige URL sein.",
-                            number:     "Die Eingabe muss eine Zahl sein.",
-                            digits:     "Die Eingabe darf nur Ziffern enthalten.",
-                            dateIso:    "Die Eingabe muss ein gültiges Datum im Format YYYY-MM-DD sein.",
-                            alphanum:   "Die Eingabe muss alphanumerisch sein.",
-                            phone:      "Die Eingabe muss eine gültige Telefonnummer sein."
-                        }, 
-                        notnull:        "Die Eingabe darf nicht leer sein.",
-                        notblank:       "Die Eingabe darf nicht leer sein.",
-                        required:       "Dies ist ein Pflichtfeld.",
-                        regexp:         "Die Eingabe scheint ungültig zu sein.",
-                        min:            "Die Eingabe muss größer oder gleich %s sein.",
-                        max:            "Die Eingabe muss kleiner oder gleich %s sein.",
-                        range:          "Die Eingabe muss zwischen %s und %s liegen.",
-                        minlength:      "Die Eingabe ist zu kurz. Es müssen mindestens %s Zeichen eingegeben werden.",
-                        maxlength:      "Die Eingabe ist zu lang. Es dürfen höchstens %s Zeichen eingegeben werden.",
-                        rangelength:    "Die Länge der Eingabe ist ungültig. Es müssen zwischen %s und %s Zeichen eingegeben werden.",
-                        equalto:        "Dieses Feld muss dem anderen entsprechen.",
-                        minwords:       "Die Eingabe muss mindestens %s Wörter enthalten.", 
-                        maxwords:       "Die Eingabe darf höchstens %s Wörter enthalten.", 
-                        rangewords:     "Die Eingabe muss zwischen %s und %s Wörter enthalten.", 
-                        greaterthan:    "Die Eingabe muss größer als %s sein.", 
-                        lessthan:       "Die Eingabe muss kleiner als %s sein."
-                    }
-                });
-            }(window.jQuery || window.Zepto));
         </script>
         
+        <?php if (!is_user_logged_in()) { ?>
+            <script>
+                var gaProperty = 'UA-63619645-1',
+                    disableStr = 'ga-disable-' + gaProperty;
+                    
+                if (document.cookie.indexOf(disableStr + '=true') > -1) {
+                    window[disableStr] = true;
+                }
+
+                function gaOptout() {
+                    document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+                    window[disableStr] = true;
+                    alert("OptOut war erfolgreich!");
+                }
+
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', gaProperty, 'auto');
+                ga('set', 'anonymizeIp', true);
+                ga('send', 'pageview');
+            </script>
+        <?php } ?>
+
         <?php
         if ( !empty($tocki_redux_themeoptions["tocki_redux_footer"]) ) {
             echo $tocki_redux_themeoptions["tocki_redux_footer"];

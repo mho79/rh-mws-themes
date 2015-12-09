@@ -31,7 +31,7 @@ if (    $tocki_redux_themeoptions['tocki_redux_mobile_switcher'] == 1
         <?php endwhile; ?>
     </section> <!-- /content -->
 
-     <aside class="sidebar sidebar-desktop">
+    <aside class="sidebar sidebar-desktop">
         <?php get_sidebar(); ?>
     </aside> <!-- /sidebar -->
 
