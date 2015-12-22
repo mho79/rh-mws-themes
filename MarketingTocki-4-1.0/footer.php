@@ -208,7 +208,7 @@
             }(document, 'script', 'rh-mws'));
         </script>
         
-        <?php if (!is_user_logged_in()) { ?>
+        <?php if (!is_user_logged_in() && empty($tocki_redux_themeoptions["tocki_redux_footer"])) { ?>
             <script>
                 var gaProperty = 'UA-63619645-1',
                     disableStr = 'ga-disable-' + gaProperty;
