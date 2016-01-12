@@ -799,6 +799,10 @@ li#theme-switcher { background:#333; border:10px solid red; padding:20px; positi
 	.content .vc_col-sm-12 ul li {
 		width: 94%;
 	}
+
+	.tocki-proxy-number {
+		text-decoration: underline;
+	}
 }
 
 

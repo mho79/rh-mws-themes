@@ -1,0 +1,14 @@
+﻿/* TEAM */
+Web Designer: Laura Götz, Dennis Hipp (http://hipp.design)
+Site: http://www.regiohelden.de 
+From: Stuttgart, Germany
+
+/* THANKS */
+Based on STARKERS NAKED THEME by Elliot Jay Stocks
+Inspired by Bootstrap Theme
+
+/* SITE */
+Last update: 2015/08/19
+Standards: HTML5, CSS3
+Components: Wordpress, jQuery, Google Map API, Google Font API, TypeKit
+Software: Adobe Illustrator, Adobe Photoshop, Sublime Text 2

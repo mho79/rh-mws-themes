@@ -1,0 +1,221 @@
+/*
+Theme Name: MWS 2016
+Theme URI: http://regiohelden.de/
+Author: Regiohelden GmbH | Mirko Höch
+Author URI: https://about.me/mirko.hoech
+Description: Regiohelden Marketing Website Template
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: rh
+Tags:
+*/
+body {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+/**
+ * Header
+ */
+.header {
+	position: relative;
+}
+
+.logo-row.fixed {
+	left: 0;
+	right: 0;
+	top: 0;
+}
+
+.admin-bar .logo-row.fixed {
+	top: 32px;
+}
+
+.logo-row .navbar-brand {
+	height: 100px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.logo-row .phonebox {
+	font-size: 18px;
+	line-height: 1.27;
+	padding: 25px 0;
+	text-align: right;
+}
+
+.admin-bar .navbar-fixed-top {
+	top: 32px;
+}
+
+.logo-row + .navbar-fixed-top {
+	border-top: 1px solid #e7e7e7;;
+	top: 100px;
+}
+
+.admin-bar .logo-row + .navbar-fixed-top {
+	top: 132px;
+}
+
+.navbar {
+	min-height: 80px;
+}
+
+.navbar-brand {
+	height: 80px;
+} 
+
+.navbar-logo {
+	background-color: transparent;
+	max-height: 100%;
+}
+
+.navbar-nav > li > a {
+	line-height: 50px;
+}
+
+.navbar-toggle {
+	margin-top: 23px;
+}
+
+.navbar-nav > li.current_page_parent > a,
+.navbar-nav > li.current_page_ancestor > a,
+.navbar-nav > li.current_page_parent > a:hover,
+.navbar-nav > li.current_page_ancestor > a:hover,
+.navbar-nav > li.current_page_parent > a:focus,
+.navbar-nav > li.current_page_ancestor > a:focus {
+	background-color: #e7e7e7;
+}
+
+/**
+ * Content
+ */
+.content {
+	margin: 81px 0 0;
+	position: relative;
+}
+
+.content-static {
+	margin-top: 0;
+}
+
+.content img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.keyvisual {
+	background: transparent;
+	height: 400px;
+}
+
+.main {
+	padding-top: 15px;
+	padding-bottom: 60px;
+}
+
+
+/**
+ * Sidebar
+ */
+.sidebar {
+	position: relative;
+}
+
+.phonebox {
+	border-radius: 4px;
+	color: #fff;
+	font-size: 24px;
+	line-height: 1.3;
+	padding: 15px 20px;
+	text-align: center;
+}
+
+.phonebox b {
+	display: block;
+	font-weight: 500;
+	margin: 0 0 5px;
+}
+
+.phonebox i {
+	margin: 0 5px 0 0;
+}
+
+.widget {
+	margin: 0 0 30px;
+}
+
+/**
+ * Footer
+ */
+.footer {
+	background: #efefef;
+	font-size: 11px;
+	position: relative;
+	padding: 15px 0;
+}
+
+.footer h1,
+.footer h2,
+.footer h3,
+.footer h4,
+.footer h5,
+.footer h6 {
+	margin-top: 0;
+}
+
+.footer .widget {
+	margin: 0 0 15px;
+}
+
+.footer .list-inline {
+	margin: 0;
+}
+
+/**
+ * Helper classes
+ */
+.fixed {
+	position: fixed;
+	z-index: 1030;
+}
+
+.map-canvas {
+	border-radius: 4px;
+}
+
+.container {
+	position: relative;
+}
+
+/**
+ * Responsive settings
+ */
+@media screen and (max-width: 782px) {
+	#wpadminbar {
+		position: fixed;
+	}
+
+	.admin-bar .logo-row.fixed + .navbar-fixed-top {
+		top: 146px;
+	}
+
+	.admin-bar .navbar-fixed-top,
+	.admin-bar .logo-row.fixed {
+		top: 46px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.admin-bar .logo-row.fixed + .navbar-fixed-top,
+	.admin-bar .logo-row + .navbar-fixed-top,
+	.admin-bar .navbar-fixed-top {
+		top: 46px;
+	}
+
+	.navbar-nav > li > .dropdown-menu {
+		border-radius: 0;
+		padding: 0;
+	}
+}

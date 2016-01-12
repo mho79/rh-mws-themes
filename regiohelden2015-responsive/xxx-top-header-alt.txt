@@ -1,0 +1,17 @@
+<!-- Top Header -->
+<div class="container-fluid">
+    <div id="top-header">
+        <div class="row">
+            <div class="col-md-6">
+                
+            </div>
+            <div class="col-md-6">
+                <div class="kunden-login">
+                    <a href="http://regioheld.com/administration" target="_blank" class="login-link"><i class="fa fa-sign-in"></i> Kunden Login</a><a href="/kontakt/" class="top-kontakt">Schreiben Sie uns</a>
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
+        </div>
+    </div>  
+</div>  

@@ -38,20 +38,25 @@ global $tocki_redux_themeoptions; // globale Variable für die Theme Options. ?>
 	                    <div class="footer-links">
 	                        <?php 
 	                        if (!empty($tocki_redux_themeoptions["tocki_redux_firma"])) { 
-	                            echo $tocki_redux_themeoptions["tocki_redux_firma"]; echo " // "; 
+	                            echo $tocki_redux_themeoptions["tocki_redux_firma"];
+	                            echo " // "; 
 	                        }
 
 	                        if (!empty($tocki_redux_themeoptions["tocki_redux_firma_zusatz"])) {
-	                            echo $tocki_redux_themeoptions["tocki_redux_firma_zusatz"]; echo " // ";
+	                            echo $tocki_redux_themeoptions["tocki_redux_firma_zusatz"];
+	                            echo " // ";
 	                        }
 
 	                        if (!empty($tocki_redux_themeoptions["tocki_redux_strasse"])) {
-	                            echo $tocki_redux_themeoptions["tocki_redux_strasse"]; echo " // ";
+	                            echo $tocki_redux_themeoptions["tocki_redux_strasse"];
+	                            echo " // ";
 	                        }
 
 	                        if (!empty($tocki_redux_themeoptions["tocki_redux_plz"])) {
 	                            echo $tocki_redux_themeoptions["tocki_redux_plz"];
+	                            echo ' ';
 	                        }
+
 
 	                        if (!empty($tocki_redux_themeoptions["tocki_redux_ort"])) {
 	                            echo $tocki_redux_themeoptions["tocki_redux_ort"];

@@ -56,6 +56,12 @@ if (function_exists('add_theme_support')) {
     load_theme_textdomain('html5blank', get_template_directory() . '/languages');
 }
 
+function fix_vc_parallax() {
+    wp_deregister_style('vc-row-parallax-styles');
+    wp_enqueue_style('vc-row-parallax-styles', ABSPATH . 'wp-content/plugins/parallax-backgrounds-for-vc-3.4.1/css/style.css' );
+}
+add_action('init', 'fix_vc_parallax');
+
 /*------------------------------------*\
 	Functions
 \*------------------------------------*/

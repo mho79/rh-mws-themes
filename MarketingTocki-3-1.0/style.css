@@ -631,6 +631,9 @@ margin: 0 auto;
 	}
 }
 @media all and (max-width: 500px) {
+	.tocki-proxy-number {
+		text-decoration: underline;
+	}
 	.content .vc_col-sm-12 ul li {
 	width: 94%;
 	}

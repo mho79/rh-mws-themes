@@ -142,10 +142,10 @@
 				if (!empty($tocki_redux_themeoptions["tocki_redux_colorextend_menu_active"])) { ?>	
 					#nav > ul:not( :hover ) > li.active > a,
 					#nav li a:active, 				
-					#nav li.current-menu-item a,
-					#nav ul li.current-menu-parent a,
-					#nav ul li.current_page_parent a,
-					#nav ul li.current_page_item a {
+					#nav li.current-menu-item > a,
+					#nav ul li.current-menu-parent > a,
+					#nav ul li.current_page_parent > a,
+					#nav ul li.current_page_item > a {
 						color: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_menu_active"]; ?>;		
 					}
 

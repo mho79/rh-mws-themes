@@ -213,7 +213,9 @@ PAGES
 /*------------------------------------*\
 IMAGES
 \*------------------------------------*/
-
+.vc_row {
+background-size: cover;
+}
 
 
 /*------------------------------------*\
@@ -1139,7 +1141,9 @@ width: 94%;
 }
 }
 @media all and (max-width: 500px) {
-
+	.tocki-proxy-number {
+		text-decoration: underline;
+	}
 }
 
 /*
@@ -1578,6 +1582,11 @@ display: none;
 	}
 	.title-area {
 	height: 135px;
+	}
+	.impressum-box {
+    width: 100%;
+    float: none;
+    margin-bottom: 35px;
 	}
 }
 

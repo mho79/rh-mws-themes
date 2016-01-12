@@ -74,7 +74,7 @@ a img { border:none } /* Gets rid of IE's blue borders */
 
 .tocki-sidebar-button { 
 
-		width: 257px; 
+		width: 100%; 
 		padding: 20px 0;
 		margin: 20px 0 15px 10px;
 		display: inline-block; 
@@ -304,7 +304,7 @@ h1 {
 
 
 			form.kontaktformular input[type=submit] { 		
-					width: 257px; 
+					width: 100%; 
 					padding: 15px 0;
 					margin: 20px 0 15px 0;
 					border: none;						
@@ -578,7 +578,6 @@ li#theme-switcher { background:#333; border:10px solid red; padding:20px; positi
 
 				#nav li ul
 				{
-					/* background-color: #cc470d; */
 					display: none;
 					position: absolute;
 					top: 100%;
@@ -763,7 +762,7 @@ li#theme-switcher { background:#333; border:10px solid red; padding:20px; positi
 	.sidebar {
 		float: none;
 		margin: 0;
-		padding: 25px 0 0 0;
+		padding: 25px 20px 10px 20px;
 		width: 100%;
 	}
 
@@ -779,7 +778,7 @@ li#theme-switcher { background:#333; border:10px solid red; padding:20px; positi
 		
 		.sidebar .widget_black_studio_tinymce .textwidget ul li {
 			float: left;
-			width: 40%;
+			width: 80%;
 		}
 		
 	.footer-widgets {
@@ -801,16 +800,23 @@ li#theme-switcher { background:#333; border:10px solid red; padding:20px; positi
 }
 
 
-
 @media all and (max-width: 500px) {
-			
-		.sidebar-mobile .widget_black_studio_tinymce .textwidget ul li {
-			float: none;
-			width: 90%;
-		}
-		.content .vc_col-sm-12 ul li {
+	.tocki-proxy-number {
+		text-decoration: underline;
+	}
+
+	#nav .menu-item-has-children .sub-menu {
+		display: block;
+	}
+
+	.sidebar-mobile .widget_black_studio_tinymce .textwidget ul li {
+		float: none;
+		width: 90%;
+	}
+	
+	.content .vc_col-sm-12 ul li {
 		width: 94%;
-		}
+	}
 }
 
 

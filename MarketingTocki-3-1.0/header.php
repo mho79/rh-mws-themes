@@ -94,19 +94,22 @@
 					#nav > ul > li:hover > a,
 					#nav > ul:not( :hover ) > li.active > a,
 					#nav li a:active, 				
-					#nav li.current-menu-item a,
+					#nav li.current-menu-item > a,
 					#nav ul li.current-menu-item ul li a:hover,
 					#nav ul li.current-menu-parent ul li a:hover,
 					#nav ul li.current-menu-parent ul li.current-menu-item a,
-					#nav ul li.current-menu-parent a,
-					#nav ul li.current_page_parent a,
-					#nav ul li.current_page_item a,
-					#nav li ul{ 
+					#nav ul li.current-menu-parent > a,
+					#nav ul li.current_page_parent > a,
+					#nav ul li.current_page_item > a { 
 						background-color: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_menu_active"]; ?>;
 					}
 				<?php }
 
 				if (!empty($tocki_redux_themeoptions["tocki_redux_colorextend_menu_bg"])) { ?>
+					#nav li ul {
+						background-color: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_menu_bg"]; ?>;
+					}
+					
 					@media only screen and ( max-width: 715px ) {
 						#nav > a {
 							background-color: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_menu_bg"]; ?>;

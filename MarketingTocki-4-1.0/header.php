@@ -12,6 +12,8 @@
 			} ?>
 		</title>
 
+		<?php wp_head(); ?>
+
 		<link rel="shortcut icon" href="<?php  if (!empty($tocki_redux_themeoptions["tocki_redux_favicon"])) { ?><?php echo $tocki_redux_themeoptions["tocki_redux_favicon"]["url"]; }; ?>">
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>"> <!-- allgemeines CSS -->
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/font-awesome-4.4.0/css/font-awesome.min.css"> <!-- font awesome 4.1.0 -->
@@ -29,8 +31,6 @@
 		<?php } else { ?>
 			<meta name='robots' content='noindex,follow'> <!-- Suchmaschinen ausschliessen -->
 		<?php } ?>
-
-		<?php wp_head(); ?>
 
 		<style>
 			.gambit-bg-parallax[data-bg-size-adjust="dont-scale"]+.bg-parallax-parent .parallax-inner { 
@@ -69,7 +69,9 @@
 				.nav ul .sub-menu .current-menu-item > a,
 				.nav ul li a:hover,
 				.nav ul .current-menu-item > a,
-				.nav ul .sub-menu a:hover {
+				.nav ul .sub-menu a:hover
+				.nav ul .current_page_parent > a,
+				.nav ul .current_page_ancestor > a {
 					background-color: <?php echo $tocki_redux_themeoptions["tocki_redux_colorextend_menu_active"]; ?>;
 				}
 			<?php } ?>
