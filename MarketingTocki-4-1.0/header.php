@@ -20,6 +20,7 @@
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/jquery.mmenu.all.css"> 
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
 		<?php if ($tocki_redux_themeoptions['tocki_redux_mobile_iphone_numbers_klickable'] == 1) { ?>
 			<!-- Telefon-Nr. auf iOS werden als Links anzeigen -->
 		<?php } else { ?>

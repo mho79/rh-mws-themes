@@ -26,6 +26,7 @@
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>"> <!-- allgemeines CSS -->
 		<link rel="stylesheet" media="all" href="<?php echo esc_url( get_stylesheet_directory_uri() ) ; ?>/css/font-awesome-4.4.0/css/font-awesome.min.css"> <!-- font awesome 4.1.0 -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"> 
 		<?php if (!isset($tocki_redux_themeoptions['tocki_redux_mobile_iphone_numbers_klickable'])) { ?>
 			<meta name="format-detection" content="telephone=no"> <!-- Telefon-Nr. auf iOS NICHT als Links anzeigen -->
 		<?php } ?>
