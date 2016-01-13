@@ -32,9 +32,9 @@ if (   $mws_options['mobile_switcher']
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>
-            <?php wp_title('|', true, 'right'); ?>
+            <?php wp_title('', true, 'right'); ?>
             <?php if (!empty($mws_options['page_title'])) { 
-                echo $mws_options['page_title']; 
+                echo ' | ' . $mws_options['page_title']; 
             } ?>
         </title>
 

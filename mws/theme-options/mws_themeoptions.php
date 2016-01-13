@@ -9,7 +9,7 @@ $theme = wp_get_theme(); // For use with some settings. Not necessary.
 
 $args = array(
     'opt_name' => $opt_name, // This is where your data is stored in the database and also becomes your global variable name.
-    'display_name' => 'Hallo', // Name that appears at the top of your panel
+    'display_name' => $theme->get('Name'), // Name that appears at the top of your panel
     'display_version' => $theme->get('Version'), // Version that appears at the top of your panel
     'menu_type' => 'submenu', //Specify if the admin menu should appear or not. Options: menu or submenu (Under appearance only)
     'allow_sub_menu' => true, // Show the sections below the admin menu item or not
@@ -149,7 +149,14 @@ Redux::setSection( $opt_name, array(
             ),
             'default' => '2'
         ),
-         array(
+        array(
+            'id' => 'ga',
+            'type' => 'text',
+            'title' => 'Google Analytics Property',
+            'desc' => 'Ändern wenn über einen anderen Google Analytics Account getracked werden soll.',
+            'default' => 'UA-63619645-1'
+        ),
+        array(
             'id' => 'mobile_switcher',
             'type' => 'switch',
             'title' => 'Andere CampaignID für Mobilgeräte',
@@ -587,6 +594,117 @@ Redux::setSection( $opt_name, array(
             'output'      => array('.footer'),
             'units'       => 'px',
             'default'     => array(),
+        ),
+    ),
+));
+
+Redux::setSection( $opt_name, array(
+    'title' => 'Kontakt / Impressum',
+    'icon' => 'el-icon-user',
+    'fields' => array(
+        array(
+            'id' => 'section_contact',
+            'type' => 'section',
+            'title' => 'Kontakt',
+            'indent' => true,
+        ),
+        array(
+            'id' => 'contact_company',
+            'type' => 'text',
+            'title' => 'Firma',
+            'desc' => 'keine Variable verfügbar.',
+        ),
+        array(
+            'id' => 'contact_additional_info',
+            'type' => 'text',
+            'title' => 'Zusätzliche Zeile (optional)',
+            'desc' => 'keine Variable verfügbar.',
+        ),
+        array(
+            'id' => 'contact_name',
+            'type' => 'text',
+            'title' => 'Vor- und Nachname',
+            'desc' => 'Wert aus Proxy: <span style="color: #0074A2; font-weight: bold;">{admin.customer.contact_person}</span>',
+        ),
+        array(
+            'id' => 'contact_street',
+            'type' => 'text',
+            'title' => 'Straße und Hausnr.',
+            'desc' => 'Wert aus Proxy: <span style="color: #0074A2; font-weight: bold;">{admin.customer.street}</span>',
+        ),
+        array(
+            'id' => 'contact_zip',
+            'type' => 'text',
+            'title' => 'PLZ',
+            'desc' => 'Wert aus Proxy: <span style="color: #0074A2; font-weight: bold;">{admin.customer.zipcode}</span>',
+        ),
+        array(
+            'id' => 'contact_city',
+            'type' => 'text',
+            'title' => 'Ort',
+            'desc' => 'Wert aus Proxy: <span style="color: #0074A2; font-weight: bold;">{admin.customer.city}</span>',
+        ),
+        array(
+            'id' => 'contact_mail',
+            'type' => 'text',
+            'title' => 'E-Mail',
+            'desc' => 'Wert aus Proxy: <span style="color: #0074A2; font-weight: bold;">{admin.customer.email}</span>',
+        ),
+        array(
+            'id'     => 'contact_end',
+            'type'   => 'section',
+            'indent' => false,
+        ),
+        array(
+            'id' => 'section_imprint',
+            'type' => 'section',
+            'title' => 'Impressum',
+            'indent' => true,
+        ),
+        array(
+            'id' => 'imprint',
+            'type' => 'switch',
+            'title' => 'Kontaktdaten im Impressum anpassen',
+            'subtitle' => 'Angaben von oben verwenden oder individeull eingeben.',
+            'on'  => 'individuell',
+            'off'  => 'automatisch',
+            'default' => false
+        ),
+        array(
+            'id' => 'imprint_col_1',
+            'required' => array('imprint', 'equals', '1'),
+            'type' => 'editor',
+            'title' => 'Impressum Spalte 1',
+            'subtitle' => 'Werte aus dem Proxy verwenden:<br> <span style="color: #0074A2; font-weight: bold;">{admin.customer.contact_person} <br>{admin.customer.street} <br>{admin.customer.zipcode} {admin.customer.city} <br>{regiohelden.proxy.number} <br>{admin.customer.email}</span>',
+            'default' => '<h3>Verantwortlicher</h3>{customer.contact_person} <br>{customer.street} <br>{customer.zipcode} <br>{customer.city} <br>{customer.email}',
+            'args'   => array(
+                'teeny' => true,
+                'media_buttons' => false,
+            ),
+        ),
+        array(
+            'id' => 'imprint_col_2',
+            'type' => 'editor',
+            'title' => 'Impressum Spalte 2',
+            'args'   => array(
+                'teeny' => true,
+                'media_buttons' => false,
+            ),
+        ),
+        array(
+            'id' => 'imprint_col_3',
+            'type' => 'editor',
+            'title' => 'Impressum Spalte 3',
+            'subtitle' => 'Im Normalfall für den Bildnachweis <br><a href="http://goo.gl/oRc7wV" target="_blank">Bildnachweis Doc</a>',
+            'args'   => array(
+                'teeny' => true,
+                'media_buttons' => false,
+            ),
+        ),
+        array(
+            'id'     => 'imprint_end',
+            'type'   => 'section',
+            'indent' => false,
         ),
     ),
 ));

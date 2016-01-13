@@ -127,8 +127,10 @@ function rh_scripts() {
 	wp_enqueue_style( 'dynamic', admin_url('admin-ajax.php').'?action=dynamic_css' );
 
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'bootstrap', esc_url( get_stylesheet_directory_uri() ) . '/js/vendor/bootstrap/bootstrap.min.js', array(), false, true );
-	wp_enqueue_script( 'parallax', esc_url( get_stylesheet_directory_uri() ) . '/js/vendor/parallax.min.js', array(), false, true );
+	wp_enqueue_script( 'bootstrap', esc_url( get_stylesheet_directory_uri() ) . '/js/vendor/bootstrap/bootstrap.min.js', array('jquery'), false, true );
+	wp_enqueue_script( 'parallax', esc_url( get_stylesheet_directory_uri() ) . '/js/vendor/parallax.min.js', array('jquery'), false, true );
+	wp_enqueue_script( 'parsley', esc_url( get_stylesheet_directory_uri() ) . '/js/vendor/parsley.min.js', array('jquery'), false, true );
+	wp_enqueue_script( 'parsley_i18n_de', esc_url( get_stylesheet_directory_uri() ) . '/js/vendor/de.js', array('parsley'), false, true );
 	wp_enqueue_script( 'rh-script', esc_url( get_stylesheet_directory_uri() ) . '/js/mws.js', array('bootstrap'), false, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

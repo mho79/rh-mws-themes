@@ -30,7 +30,18 @@
 	var mws = {
 		init: function () {
 			console.log('mws initialized');
-		}
+            this.analytics.optout();
+		},
+
+        analytics: {
+            optout: function() {
+                $('.ga-optout').on('click', function (e) {
+                    console.log('optout from google analytics');
+                    e.preventDefault();
+                    gaOptout();
+                });
+            }
+        }
 	};
 
 	mws.init();

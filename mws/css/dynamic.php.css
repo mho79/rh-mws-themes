@@ -29,14 +29,21 @@ function adjustColor($color_code,$percentage_adjuster = 0) {
 }
 
 $corporate_color = $mws_options['corporate_color'];
-$corporate_color_dark = adjustColor( $corporate_color, 5 );
-$corporate_color_light = adjustColor( $corporate_color, -5 );
+$corporate_color_dark = adjustColor( $corporate_color, 6 );
+$corporate_color_light = adjustColor( $corporate_color, -6 );
 ?>
 
 <?php if(!$mws_options['rounded_borders']) { ?>
 * { border-radius: 0 !important; }
 <?php } ?>
 
+a {
+    color: <?php echo $corporate_color; ?>;
+}
+a:hover,
+a:focus {
+     color: <?php echo $corporate_color_dark; ?>;
+}
 .text-primary {
     color: <?php echo $corporate_color; ?>
 }

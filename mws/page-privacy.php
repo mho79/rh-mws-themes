@@ -1,12 +1,7 @@
 <?php
 /**
- * Template Name: AdWords
- * The template for displaying all pages.
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
+ * Template Name: Datenschutz
+ * The template for displaying the privacy page.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -21,7 +16,11 @@ get_header(); ?>
 				$content_class = 'col-lg-12';
 			endif;
 		?>
-		<main id="main" class="adwords <?php echo $content_class; ?> col-xs-12" role="main">
+		<main id="main" class="<?php echo $content_class; ?> col-xs-12" role="main">
+			<header>
+				<?php the_title( '<h1>', '</h1>' ); ?>
+			</header>
+
 			<?php 
 				while (have_posts()) : 
 					the_post();

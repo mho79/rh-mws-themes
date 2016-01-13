@@ -306,7 +306,7 @@ function SalesforceShortcode_lang() {
 			<div class="clearfix"></div>
 			</div>';
 }
-add_shortcode('Salesforce lang', 'SalesforceShortcode_lang');
+add_shortcode('Salesforce_lang', 'SalesforceShortcode_lang');
 
 
 function SalesforceShortcode_Partner() {
@@ -353,7 +353,7 @@ function SalesforceShortcode_Partner() {
 <div class="sf-input sf-submit"><input type="submit" name="submit" value="Absenden" class="sendbutton"></div>
 </form>';
 }
-add_shortcode('Salesforce Partner', 'SalesforceShortcode_partner');
+add_shortcode('Salesforce_Partner', 'SalesforceShortcode_partner');
 
 
 function SalesforceShortcode_kurz() {
@@ -377,7 +377,7 @@ function SalesforceShortcode_kurz() {
 			<div class="clearfix"></div>
 			</div>';
 }
-add_shortcode('Salesforce kurz', 'SalesforceShortcode_kurz');
+add_shortcode('Salesforce_kurz', 'SalesforceShortcode_kurz');
 
 
 function SalesforceShortcode_komplett() {
@@ -432,7 +432,7 @@ function SalesforceShortcode_komplett() {
 				<div class="clearfix"></div>
 			</div>';
 }
-add_shortcode('Salesforce komplett', 'SalesforceShortcode_komplett');
+add_shortcode('Salesforce_komplett', 'SalesforceShortcode_komplett');
 
 add_filter('admin_footer_text', 'custom_admin_footer');
 add_filter( 'wp_title', 'rh_wp_title', 10, 2 );
