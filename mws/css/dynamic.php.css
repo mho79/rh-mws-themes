@@ -144,14 +144,18 @@ body {
     background-size: <?php echo $mws_options['body_background']['background-size']; ?>;
 }
 
-
-
 <?php if(!$mws_options['nav_fullwidth'] && !$mws_options['logo_row']) { ?>
 .header {
     margin-top: 15px;
 }
 .content {
     margin-top: 0;
+}
+<?php } ?>
+
+<?php if($mws_options['nav_fullwidth'] && !$mws_options['header_fixed']) { ?>
+.navbar {
+    border-radius: 0;
 }
 <?php } ?>
 
@@ -167,6 +171,22 @@ body {
     margin: 0 -15px;
     <?php } ?>
 }
+
+<?php if(!$mws_options['logo_row']) { ?>
+.navbar-default a.navbar-brand,
+.navbar-default a.navbar-brand:hover,
+.navbar-default a.navbar-brand:active {
+    background-color: <?php echo $mws_options['logo_bg']; ?>;
+    border-radius: 4px 0 0 4px;
+}
+<?php } ?>
+
+<?php if($mws_options['logo_row'] && !$mws_options['nav_fullwidth']) { ?>
+.container > .navbar-collapse {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+<?php } ?>
 
 <?php if($mws_options['nav_fullwidth'] && $mws_options['logo_row']) { ?>
 .navbar-collapse {
@@ -215,11 +235,6 @@ body {
     color: <?php echo $mws_options['menu_text']; ?>;
     <?php } ?>
 }
-.navbar-brand,
-.navbar-brand:hover,
-.navbar-brand:active, {
-    background-color: <?php echo $mws_options['logo_bg']; ?>;
-} 
 
 .main {
     background-color: <?php echo $mws_options['content_bg']; ?>;

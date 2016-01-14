@@ -50,13 +50,13 @@ if (   $mws_options['mobile_switcher']
 
     <body <?php body_class(); ?>>
         <?php 
-        $container_class = 'container';
+        $container_class = ' container';
         if($mws_options['nav_fullwidth']) {
-            $container_class = 'container-fluid';
+            $container_class = '';
         }
         ?>
 
-        <div class="header<?php echo ' ' . $container_class ?>">
+        <div class="header<?php echo $container_class ?>">
             <?php if($mws_options['logo_row']) { ?>
                 <div class="logo-row hidden-xs<?php echo (($mws_options['header_fixed'] && $mws_options['nav_fullwidth']) ? ' fixed' : ''); ?>">
                     <div class="container">
