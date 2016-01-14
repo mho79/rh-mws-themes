@@ -11,25 +11,44 @@
 global $mws_options;
 
 $container_class = 'container';
+if($mws_options['footer_fullwidth']) {
+    $container_class = 'container-fluid';
+}
 ?>
 			</div><!-- #container -->
 		</div><!-- #content -->
 
-		<footer id="colophon" class="footer">
-			<div class="<?php echo $container_class; ?>">
-				<div class="row">
-					<div class="col-md-12">
-						<?php dynamic_sidebar('sidebar-footer');  ?>
-					</div>
-				</div>
-
-				<div class="row">
+		<footer id="colophon" class="footer<?php echo ' ' . $container_class; ?>">
+			<div class="container">
+				<div class="row gap">
 					<div class="col-md-12">
 						<div class="pull-left">
 							<?php 
+							if (!empty($mws_options['contact_company'])) { 
+								echo $mws_options['contact_company'] . '&nbsp;|&nbsp;'; 
+							}
+
+							if (!empty($mws_options['contact_additional_info'])) { 
+								echo $mws_options['contact_additional_info'] . '&nbsp;|&nbsp;'; 
+							}
+
+							if (!empty($mws_options['contact_street'])) { 
+								echo $mws_options['contact_street'] . '&nbsp;|&nbsp;';
+							} 
+
+							if (!empty($mws_options['contact_zip'])) { 
+								echo $mws_options['contact_zip'] . '&nbsp;'; 
+							} 
+
+							if (!empty($mws_options['contact_city'])) { 
+								echo $mws_options['contact_city'] . '&nbsp;|&nbsp;'; 
+							}
+
+							echo "Tel.: {regiohelden.proxy.number}&nbsp;|&nbsp;";
+
 							if( !empty(get_page_by_path('/datenschutz')) ) {
 								$privacy = get_page_by_path('/datenschutz');
-								echo '<a href="/datenschutz" title="' . $privacy->post_title . '">' . $privacy->post_title . '</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+								echo '<a href="/datenschutz" title="' . $privacy->post_title . '">' . $privacy->post_title . '</a>&nbsp;|&nbsp;';
 							} 
 
 							if( !empty(get_page_by_path('/impressum')) ) {
@@ -53,10 +72,15 @@ $container_class = 'container';
 					</div>
 				</div>
 			</div>	
+
+			<div class="<?php echo $container_class; ?>">
+				<div class="row">
+					<?php dynamic_sidebar('sidebar-footer');  ?>
+				</div>
+			</div>
 		</footer>
 
 		<?php wp_footer(); ?>
-
 		
 		<script>
 			var gaProperty = '<?php echo $mws_options["ga"]; ?>',

@@ -41,7 +41,8 @@ a {
     color: <?php echo $corporate_color; ?>;
 }
 a:hover,
-a:focus {
+a:focus,
+a:active {
      color: <?php echo $corporate_color_dark; ?>;
 }
 .text-primary {
@@ -154,6 +155,12 @@ body {
 }
 <?php } ?>
 
+<?php if(!$mws_options['nav_fullwidth']) { ?>
+.header {
+    margin-bottom: 15px;
+}
+<?php } ?>
+
 .logo-row {
     background-color: <?php echo $mws_options['logo_row_bg']; ?>;
     <?php if(!$mws_options['nav_fullwidth'] && $mws_options['logo_row']) { ?>
@@ -208,6 +215,11 @@ body {
     color: <?php echo $mws_options['menu_text']; ?>;
     <?php } ?>
 }
+.navbar-brand,
+.navbar-brand:hover,
+.navbar-brand:active, {
+    background-color: <?php echo $mws_options['logo_bg']; ?>;
+} 
 
 .main {
     background-color: <?php echo $mws_options['content_bg']; ?>;
@@ -218,7 +230,7 @@ body {
 
 <?php if($mws_options['nav_fullwidth'] && $mws_options['logo_row'] && $mws_options['header_fixed']) { ?>
 .content {
-    margin-top: 152px;
+    margin-top: 150px;
 }
 <?php } ?>
 
@@ -234,18 +246,21 @@ body {
 
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:focus,
-.dropdown-menu > .active > a:hover {
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:active {
     background-color: <?php echo $corporate_color; ?>;
 }
 
 <?php if($mws_options['color_settings']) { ?>
-.navbar-nav > li.current_page_parent > a,
-.navbar-nav > li.current_page_ancestor > a,
-.navbar-nav > li.current_page_parent > a:hover,
-.navbar-nav > li.current_page_ancestor > a:hover,
-.navbar-nav > li.current_page_parent > a:focus,
-.navbar-nav > li.current_page_ancestor > a:focus {
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li.current_page_parent > a,
+.navbar-default .navbar-nav > li.current_page_ancestor > a,
+.navbar-default .navbar-nav > li.current_page_parent > a:hover,
+.navbar-default .navbar-nav > li.current_page_ancestor > a:hover,
+.navbar-default .navbar-nav > li.current_page_parent > a:focus,
+.navbar-default .navbar-nav > li.current_page_ancestor > a:focus {
     background-color: <?php echo $mws_options['menu_active']; ?>;
+    color: <?php echo $mws_options['menu_active_text']; ?>;
 }
 .navbar-default .navbar-nav > li > a {
     color: <?php echo $mws_options['menu_text']; ?>;
@@ -253,9 +268,11 @@ body {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus, 
 .navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:active,
 .navbar-default .navbar-nav > .open > a, 
 .navbar-default .navbar-nav > .open > a:focus,
-.navbar-default .navbar-nav > .open > a:hover {
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:active {
     background-color: <?php echo $mws_options['menu_active']; ?>;
     color: <?php echo $mws_options['menu_active_text']; ?>;
 }
@@ -299,19 +316,21 @@ body {
 
     <?php if($mws_options['color_settings']) { ?>
     /* custom setting */
-    .navbar-nav .open .dropdown-menu {
+    .navbar-default .navbar-nav .open .dropdown-menu {
         background-color: <?php echo $mws_options['dropdown_bg']; ?>;
     }
-    .navbar-nav .open .dropdown-menu .dropdown-header, 
-    .navbar-nav .open .dropdown-menu > li > a {
+    .navbar-default .navbar-nav .open .dropdown-menu .dropdown-header, 
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         background-color: <?php echo $mws_options['dropdown_bg']; ?>;
         color: <?php echo $mws_options['dropdown_text']; ?>;
     }
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
     .navbar-default .navbar-nav .open .dropdown-menu >.active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu >.active > a:active,
     .navbar-default .navbar-nav .dropdown-menu > li > a:focus,
-    .navbar-default .navbar-nav .dropdown-menu > li > a:hover {
+    .navbar-default .navbar-nav .dropdown-menu > li > a:hover
+    .navbar-default .navbar-nav .dropdown-menu > li > a:active {
         background-color: <?php echo $mws_options['dropdown_active_bg']; ?>;
         color: <?php echo $mws_options['dropdown_active_text']; ?>;
     }
@@ -336,6 +355,4 @@ if($mws_options['badge'] && !empty($mws_options['badge_css'])) {
 if(!empty($mws_options['custom_css'])) {
     echo "\n\n" . $mws_options['custom_css'];
 }
-
-die(); 
 ?>

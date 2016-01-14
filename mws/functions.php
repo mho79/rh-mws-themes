@@ -90,6 +90,44 @@ function remove_theme_edit() {
 add_action( 'admin_menu', 'remove_theme_edit', 999 );
 
 /**
+ * bootstrap 3 styled comment fields
+ */
+function bootstrap3_comment_form_fields( $fields ) {
+    $commenter = wp_get_current_commenter();
+    
+    $req      = get_option( 'require_name_email' );
+    $html5    = current_theme_supports( 'html5', 'comment-form' ) ? 1 : 0;
+
+    $fields   =  array(
+        'author' => '<div class="form-group comment-form-author">' . '<label for="author">' . __( 'Name' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+                    '<input class="form-control" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"' . ( $req ? ' required' : '' ) . '></div>',
+        'email'  => '<div class="form-group comment-form-email"><label for="email">' . __( 'Email' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+                    '<input class="form-control" id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" required></div>',
+        'url'    => '<div class="form-group comment-form-url"><label for="url">' . __( 'Website' ) . '</label> ' .
+                    '<input class="form-control" id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '"></div>'        
+    );
+    
+    return $fields;
+}
+add_filter( 'comment_form_default_fields', 'bootstrap3_comment_form_fields' );
+
+/**
+ * bootstrap 3 styled comment textarea and submit
+ */
+function bootstrap3_comment_form( $args ) {
+    $args['comment_field'] = '
+    	<div class="form-group comment-form-comment">
+            <label for="comment">' . _x( 'Kommentar', 'rh' ) . '</label> 
+            <textarea class="form-control" id="comment" name="comment" cols="45" rows="8" required></textarea>
+        </div>';
+
+    $args['class_submit'] = 'btn btn-primary'; // since WP 4.1
+    
+    return $args;
+}
+add_filter( 'comment_form_defaults', 'bootstrap3_comment_form' );
+
+/**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
@@ -124,7 +162,8 @@ function rh_scripts() {
 	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Open+Sans+Condensed:300,700|Libre+Baskerville:400,700|Cutive+Mono' );
 	wp_enqueue_style( 'bootstrap', esc_url( get_stylesheet_directory_uri() ) . '/css/vendor/bootstrap/bootstrap.min.css' );
 	wp_enqueue_style( 'rh-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'dynamic', admin_url('admin-ajax.php').'?action=dynamic_css' );
+	//wp_enqueue_style( 'dynamic', admin_url('admin-ajax.php').'?action=dynamic_css' );
+	wp_enqueue_style( 'dynamic', esc_url( get_stylesheet_directory_uri() ) . '/css/dynamic.css' );
 
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'bootstrap', esc_url( get_stylesheet_directory_uri() ) . '/js/vendor/bootstrap/bootstrap.min.js', array('jquery'), false, true );
@@ -140,16 +179,34 @@ function rh_scripts() {
 add_action( 'wp_enqueue_scripts', 'rh_scripts' );
 
 /**
- * get dynamically generated css file
+ * generate dynamic css file
  */
-function dynamic_css() {
-	require( get_template_directory() . '/css/dynamic.php.css' );
+function rh_generate_dynamic_css() {
+	global $wp_filesystem;
 	
-	return;
-}
-add_action('wp_ajax_dynamic_css', 'dynamic_css');
-add_action('wp_ajax_nopriv_dynamic_css', 'dynamic_css');
+	$css_dir = get_stylesheet_directory() . '/css/';
 
+	ob_start();
+	require( $css_dir . 'dynamic.php.css' );
+	$css = ob_get_clean();
+
+	if (empty($wp_filesystem)) {
+	    require_once (ABSPATH . '/wp-admin/includes/file.php');
+	    WP_Filesystem();
+	}
+
+	$css = trim( preg_replace( '/\s\s+/', ' ', str_replace("/\r|\n/", " ", $css) ) );
+	$wp_filesystem->put_contents(
+		$css_dir . 'dynamic.css',
+		$css,
+		FS_CHMOD_FILE // predefined mode settings for WP files
+	);
+}
+add_action( 'redux/options/mws_options/saved', 'rh_generate_dynamic_css' );
+
+/**
+ * customize post navigation
+ */
 function rh_the_posts_navigation() {
 	$navigation = '';
  
@@ -186,51 +243,63 @@ function rh_the_posts_navigation() {
 }
 add_action('the_posts_navigation', 'rh_the_posts_navigation');
 
-function bootstrap3_comment_form_fields( $fields ) {
-    $commenter = wp_get_current_commenter();
-    
-    $req      = get_option( 'require_name_email' );
-    $html5    = current_theme_supports( 'html5', 'comment-form' ) ? 1 : 0;
-
-    $fields   =  array(
-        'author' => '<div class="form-group comment-form-author">' . '<label for="author">' . __( 'Name' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
-                    '<input class="form-control" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '"' . ( $req ? ' required' : '' ) . '></div>',
-        'email'  => '<div class="form-group comment-form-email"><label for="email">' . __( 'Email' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
-                    '<input class="form-control" id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" required></div>',
-        'url'    => '<div class="form-group comment-form-url"><label for="url">' . __( 'Website' ) . '</label> ' .
-                    '<input class="form-control" id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '"></div>'        
-    );
-    
-    return $fields;
-}
-add_filter( 'comment_form_default_fields', 'bootstrap3_comment_form_fields' );
-
-function bootstrap3_comment_form( $args ) {
-    $args['comment_field'] = '
-    	<div class="form-group comment-form-comment">
-            <label for="comment">' . _x( 'Kommentar', 'rh' ) . '</label> 
-            <textarea class="form-control" id="comment" name="comment" cols="45" rows="8" required></textarea>
-        </div>';
-
-    $args['class_submit'] = 'btn btn-primary'; // since WP 4.1
-    
-    return $args;
-}
-add_filter( 'comment_form_defaults', 'bootstrap3_comment_form' );
-
 /**
  * proxy number shortcode
  */
-function proxy_number_shortcode() {
+function rh_proxy_number() {
 	if ( function_exists('is_mobile') && is_mobile() ) {
 		return '<a class="proxy-number" href="tel:{regiohelden.proxy.number}">{regiohelden.proxy.number}</a>';
 	} else {
 		return '{regiohelden.proxy.number}';
 	}
 }
-add_shortcode('ProxyNumber', 'proxy_number_shortcode');
+add_shortcode('ProxyNumber', 'rh_proxy_number');
 
 /**
  * allow shortcodes in widgets
  */
 add_filter('widget_text', 'do_shortcode');
+
+/**
+ * call widget by name using shortcode
+ * 
+ * @param  array  $atts   widget_name is required
+ * @return string $output widget html representaion of widget
+ */
+function rh_widget($atts) {
+    global $wp_widget_factory;
+    
+    extract(shortcode_atts(array(
+        'widget_name' => FALSE
+    ), $atts));
+    
+    $widget_name = wp_specialchars($widget_name);
+    
+    if ( !is_a($wp_widget_factory->widgets[$widget_name], 'WP_Widget') ):
+        $wp_class = 'WP_Widget_' . ucwords(strtolower($class));
+        
+        if (!is_a($wp_widget_factory->widgets[$wp_class], 'WP_Widget')):
+            return '<p>'.sprintf(__("%s: Widget class not found. Make sure this widget exists and the class name is correct"),'<strong>'.$class.'</strong>').'</p>';
+        else:
+            $class = $wp_class;
+        endif;
+    endif;
+    
+    ob_start();
+    the_widget(
+    	$widget_name,
+    	$instance, 
+    	array(
+    		'widget_id'     => 'arbitrary_instance_' . $id,
+	        'before_widget' => '',
+	        'after_widget'  => '',
+	        'before_title'  => '',
+	        'after_title'   => ''
+    ));
+    $output = ob_get_contents();
+    ob_end_clean();
+
+    return $output;
+    
+}
+add_shortcode('widget', 'rh_widget'); 

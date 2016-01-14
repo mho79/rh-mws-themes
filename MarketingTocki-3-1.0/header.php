@@ -16,7 +16,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 	
 		<title>
-			<?php the_title(); ?> | 
+			<?php wp_title('|', true, 'right'); ?>
 			<?php if (!empty($tocki_redux_themeoptions["tocki_redux_title"])) { 
 				echo $tocki_redux_themeoptions["tocki_redux_title"]; 
 			} ?>

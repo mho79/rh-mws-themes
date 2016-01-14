@@ -267,6 +267,13 @@ Redux::setSection( $opt_name, array(
             'desc' => 'Uploade ein Bild für den Kopfbereich.',
         ),
         array(
+            'id' => 'logo_bg',
+            'type' => 'color',
+            'title' => 'Logo Hintergrundfarbe',
+            'validate' => 'color',
+            'default' => 'transparent'
+        ),
+        array(
             'id' => 'logo_url',
             'type' => 'text',
             'title' => 'Logo benutzerdef. URL',
@@ -349,11 +356,11 @@ Redux::setSection( $opt_name, array(
             'title' => 'Navbar Rahmen',
             'all' => false,
             'default'  => array(
-                'border-color'  => '#e7e7e7', 
-                'border-style'  => 'solid', 
+                'border-color'  => 'transparent', 
+                'border-style'  => 'none', 
                 'border-top'    => '0', 
                 'border-right'  => '0', 
-                'border-bottom' => '1px', 
+                'border-bottom' => '0', 
                 'border-left'   => '0'
             )
         ),

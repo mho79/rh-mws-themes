@@ -6,19 +6,19 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
 		<title>
-			<?php the_title(); ?> | 
+			<?php wp_title('|', true, 'right'); ?>
 			<?php  if (!empty($tocki_redux_themeoptions["tocki_redux_title"])) { 
 				echo $tocki_redux_themeoptions["tocki_redux_title"]; 
 			} ?>
 		</title>
-
-		<?php wp_head(); ?>
 
 		<link rel="shortcut icon" href="<?php  if (!empty($tocki_redux_themeoptions["tocki_redux_favicon"])) { ?><?php echo $tocki_redux_themeoptions["tocki_redux_favicon"]["url"]; }; ?>">
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>"> <!-- allgemeines CSS -->
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/font-awesome-4.4.0/css/font-awesome.min.css"> <!-- font awesome 4.1.0 -->
 		<link rel="stylesheet" media="all" href="<?php bloginfo( 'stylesheet_directory' ); ?>/css/jquery.mmenu.all.css"> 
 		
+		<?php wp_head(); ?>
+
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE">
 		<?php if ($tocki_redux_themeoptions['tocki_redux_mobile_iphone_numbers_klickable'] == 1) { ?>

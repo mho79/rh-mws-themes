@@ -32,9 +32,9 @@ if (   $mws_options['mobile_switcher']
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>
-            <?php wp_title('', true, 'right'); ?>
+            <?php wp_title('|', true, 'right'); ?>
             <?php if (!empty($mws_options['page_title'])) { 
-                echo ' | ' . $mws_options['page_title']; 
+                echo $mws_options['page_title']; 
             } ?>
         </title>
 
@@ -49,12 +49,17 @@ if (   $mws_options['mobile_switcher']
     </head>
 
     <body <?php body_class(); ?>>
-        <?php $container_class = 'container'; ?>
+        <?php 
+        $container_class = 'container';
+        if($mws_options['nav_fullwidth']) {
+            $container_class = 'container-fluid';
+        }
+        ?>
 
-        <div class="header">
+        <div class="header<?php echo ' ' . $container_class ?>">
             <?php if($mws_options['logo_row']) { ?>
                 <div class="logo-row hidden-xs<?php echo (($mws_options['header_fixed'] && $mws_options['nav_fullwidth']) ? ' fixed' : ''); ?>">
-                    <div class="<?php echo $container_class; ?>">
+                    <div class="container">
                         <a href="<?php echo (!empty($mws_options['logo_url']) ? esc_url($mws_options['logo_url']) : esc_url(home_url( '/' ))); ?>" 
                            class="navbar-brand" title="<?php echo get_bloginfo( 'name' ); ?>">
                             <?php 
@@ -76,7 +81,7 @@ if (   $mws_options['mobile_switcher']
             <?php  } ?>
             
             <nav class="navbar navbar-default<?php echo (($mws_options['header_fixed'] && $mws_options['nav_fullwidth']) ? ' navbar-fixed-top' : ''); ?>">
-                <div class="<?php echo $container_class; ?>">
+                <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
                                 data-target="#mainNav" aria-expanded="false">
