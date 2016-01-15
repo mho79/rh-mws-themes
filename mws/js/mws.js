@@ -30,16 +30,37 @@
 	var mws = {
 		init: function () {
 			console.log('mws initialized');
-            this.analytics.optout();
+            this.analytics.init();
+            this.forms.init();
 		},
 
         analytics: {
+            init: function () {
+                mws.analytics.optout();
+            },
+
             optout: function() {
                 $('.ga-optout').on('click', function (e) {
                     console.log('optout from google analytics');
                     e.preventDefault();
-                    gaOptout();
+                    w.gaOptout();
                 });
+            }
+        },
+
+        forms: {
+            init: function () {
+                if(w.clickConv !== '') {
+                    $('.kontaktformular button, .kontaktformular submit').on('click', function () {
+                        console.log('form conversion triggered');
+                        mws.forms.conversion();
+                    });
+                }
+            },
+
+            conversion: function () {
+                var image = new Image();
+                image.src = "http://www.googleadservices.com/pagead/conversion/" + w.google_conversion_id + "/?label=" + w.google_conversion_label + "&script=0";
             }
         }
 	};

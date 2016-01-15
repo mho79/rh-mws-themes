@@ -293,12 +293,12 @@ body {
 }
 .btn {
     background-color: <?php echo $mws_options['button_bg']; ?>;
-    border-color: <?php echo adjustColor( $mws_options['button_bg'], 5 ); ?>;
+    border-color: <?php echo adjustColor( $mws_options['button_bg'], 6 ); ?>;
     color: <?php echo $mws_options['button_text']; ?>;
 }
 .btn:hover {
-    background-color: <?php echo adjustColor($mws_options['button_bg']); ?>;
-    border-color: <?php echo adjustColor( $mws_options['button_bg'], 5 ); ?>;
+    background-color: <?php echo adjustColor($mws_options['button_bg'], 6); ?>;
+    border-color: <?php echo adjustColor( $mws_options['button_bg'], 6); ?>;
     color: <?php echo $mws_options['button_text']; ?>;
 }
 .phonebox {

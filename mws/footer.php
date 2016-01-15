@@ -84,13 +84,17 @@ if($mws_options['footer_fullwidth']) {
 		
 		<script>
 			var gaProperty = '<?php echo $mws_options["ga"]; ?>',
-				disableStr = 'ga-disable-' + gaProperty;
+				disableStr = 'ga-disable-' + gaProperty,
+				clickConv = '<?php !empty($mws_options["form_conversion"]) ? $mws_options["form_conversion"] : "" ?>',
+				google_conversion_id = '<?php if (!empty($mws_options["form_conversion_id"])) { echo $mws_options["form_conversion_id"]; } ?>',
+                google_conversion_label = '<?php if (!empty($mws_options["form_conversion_label"])) { echo $mws_options["form_conversion_label"]; } ?>';
 
 			if (document.cookie.indexOf(disableStr + '=true') > -1) {
 			  	window[disableStr] = true;
 			}
 			 
 			function gaOptout() {
+				console.log('optout successful');
 			  	document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
 			  	window[disableStr] = true;
 			}
