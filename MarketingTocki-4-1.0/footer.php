@@ -36,7 +36,7 @@
                                 };
 
                                 if (!empty($tocki_redux_themeoptions["tocki_redux_plz"])) { 
-                                    echo $tocki_redux_themeoptions["tocki_redux_plz"]; 
+                                    echo $tocki_redux_themeoptions["tocki_redux_plz"] . ' '; 
                                 };
 
                                 if (!empty($tocki_redux_themeoptions["tocki_redux_ort"])) { 

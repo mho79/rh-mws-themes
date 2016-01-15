@@ -39,7 +39,7 @@ global $tocki_redux_themeoptions; // globale Variable für die Theme Options. ?>
                             <?php if (!empty($tocki_redux_themeoptions["tocki_redux_firma"])) { echo $tocki_redux_themeoptions["tocki_redux_firma"]; echo " // "; } ?>
                             <?php if (!empty($tocki_redux_themeoptions["tocki_redux_firma_zusatz"])) { echo $tocki_redux_themeoptions["tocki_redux_firma_zusatz"]; echo " // "; } ?>
                             <?php if (!empty($tocki_redux_themeoptions["tocki_redux_strasse"])) { echo $tocki_redux_themeoptions["tocki_redux_strasse"]; echo " // "; } ?>
-                            <?php if (!empty($tocki_redux_themeoptions["tocki_redux_plz"])) { echo $tocki_redux_themeoptions["tocki_redux_plz"]; } ?>
+                            <?php if (!empty($tocki_redux_themeoptions["tocki_redux_plz"])) { echo $tocki_redux_themeoptions["tocki_redux_plz"] . ' '; } ?>
                             <?php if (!empty($tocki_redux_themeoptions["tocki_redux_ort"])) { echo $tocki_redux_themeoptions["tocki_redux_ort"]; }
                             echo " // "; ?>
                             Tel.: <span>{regiohelden.proxy.number}</span> // 
